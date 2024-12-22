@@ -97,6 +97,17 @@
             return $result;
         }
 
+        public function show_productfull($id) {
+            $query = "SELECT tbl_product.*, tbl_category.catName, tbl_brand.brandName
+                      FROM tbl_product
+                      INNER JOIN tbl_category ON tbl_product.catId = tbl_category.catId
+                      INNER JOIN tbl_brand ON tbl_product.brandId = tbl_brand.brandId
+                      WHERE productId = '$id' 
+                      ORDER BY tbl_product.productId DESC";        
+            $result = $this->db->select($query);
+            return $result;
+        }
+
         // ================================================
         //           Lấy sản phẩm theo Id
         // ================================================
