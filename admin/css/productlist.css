@@ -79,3 +79,9 @@ body {
 .measure-item span {
   font-size: 12px;
 }
+
+@media screen and (max-width: 1000px) {
+  body {
+    min-width: 1200px;
+  }
+}

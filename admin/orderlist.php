@@ -6,10 +6,6 @@
 <?php 
   $customer = new customer();
   $order = new order();
-//   if (isset($_GET['delid'])) {
-//       $id = $_GET['delid'];
-//       $delCustomer = $customer->del_customer($id);
-//   }
 ?>
 
 <script src="js/ajax_order.js"></script>
@@ -17,13 +13,6 @@
 <h1 class="dashboard-title">Đơn hàng</h1>
 <div class="customer-list-wrapper">
   <div class="customer-box">
-    <div class="noti">
-      <?php
-        // if(isset($delCustomer)){
-        //   echo $delCustomer;
-        // }
-      ?>
-    </div>
     <div class="table-wrapper">
       <table class="customer-table" id="customer-table">
         <thead>
@@ -80,7 +69,7 @@
             <td><?php echo number_format($result['totalAmount']) ?>đ</td>
             <td>
               <div>
-                <a href="" class="action-link">Chi tiết</a> 
+                <a href="orderdetail.php?orderid=<?php echo $result['orderId']; ?>" class="action-link">Chi tiết</a> 
               </div>  
             </td>
           </tr>

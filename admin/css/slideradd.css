@@ -1,0 +1,134 @@
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Tiêu đề trang */
+.page-title-add-banner {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Container chính */
+.container-add-banner {
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Box bao quanh form */
+.box-add-banner {
+  padding: 15px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Tiêu đề của box */
+.box-title-add-banner {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #222;
+  font-weight: bold;
+}
+
+/* Block của form */
+.block-add-banner {
+  margin-top: 10px;
+  width: 100%;
+}
+
+/* Table form */
+.form-add-banner {
+  width: 50%;
+  border-collapse: collapse;
+}
+
+/* Ô chứa nhãn */
+.form-label-cell {
+  padding: 10px;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: bold;
+  color: #555;
+  width: 20%;
+}
+
+/* Ô chứa input */
+.form-input-cell {
+  padding: 10px;
+  width: 75%;
+}
+
+/* Nhãn */
+.form-label-add-banner {
+  font-size: 14px;
+  color: #333;
+}
+
+/* Input text */
+.input-add-banner,
+.input-file-add-banner,
+.select-add-banner {
+  width: 100%; /* Đồng nhất chiều rộng */
+  max-width: 400px; /* Giới hạn tối đa */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box; /* Đảm bảo padding không ảnh hưởng chiều rộng */
+}
+
+/* Nút submit */
+.button-add-banner {
+  display: inline-block;
+  width: 100%; /* Chiều rộng đầy đủ */
+  max-width: 150px; /* Tùy chọn: giới hạn chiều dài tối đa */
+  padding: 10px 15px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.button-add-banner:hover {
+  background-color: #218838;
+}
+
+/* Form submit cell */
+.form-submit-cell {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.image-preview-container {
+  margin-top: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.image-preview {
+  max-width: 200px; /* Kích thước tối đa của ảnh */
+  max-height: 200px; /* Giới hạn chiều cao */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  display: none; /* Ẩn ảnh trước khi chọn */
+}

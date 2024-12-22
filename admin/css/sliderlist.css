@@ -1,0 +1,42 @@
+.page-title-banner-list {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.container-banner {
+  margin: 20px;
+  padding: 10px;
+}
+
+.box-banner-list {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.block-banner-list {
+  margin-top: 20px;
+}
+
+.table-banner-list {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-banner-list th,
+.table-banner-list td {
+  text-align: center;
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.table-banner-list th {
+  background-color: #343a40;
+  color: #fff;
+}
+
+.table-banner-list td img {
+  max-width: 200px;
+  max-height: 100px;
+}
