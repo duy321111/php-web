@@ -16,11 +16,21 @@ document.addEventListener("DOMContentLoaded", function () {
   function handleCartAction(action) {
     const productId = document.getElementById("proid").value; // Lấy proid từ input
     const quantity = document.getElementById("quantity-input").value; // Lấy quantity từ input
+    const productQuantity = parseInt(
+      document.getElementById("productQuantity").value,
+      10
+    );
 
     // Kiểm tra nếu giá trị proid và quantity hợp lệ
     if (!productId || !quantity) {
       alert("Thông tin sản phẩm không hợp lệ.");
       return;
+    }
+
+    if (quantity > productQuantity) {
+      document.getElementById("cartMessage").innerHTML =
+        "<span class='error'>Số lượng sản phẩm trong kho không đủ</span>";
+      return; // Dừng việc gửi AJAX
     }
 
     // Tạo đối tượng dữ liệu gửi đi qua AJAX

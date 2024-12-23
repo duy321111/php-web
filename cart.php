@@ -16,7 +16,13 @@
   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cartId']) && isset($_POST['quantity'])) {
     $cartId = $_POST['cartId'];  // Lấy cartId từ POST
     $quantity = $_POST['quantity'];  // Lấy quantity từ POST
-    $update_quantity_cart = $ct->update_quantity_cart($quantity, $cartId);
+    $productQuantity = $_POST['productQuantity'];
+    if($quantity > $productQuantity){
+      $trigger_outsale = true;
+    }
+    else{
+      $update_quantity_cart = $ct->update_quantity_cart($quantity, $cartId);
+    }
   }  
 
   // =============================================================================
@@ -72,7 +78,12 @@
               while ($measure = $measures->fetch_assoc()) {
                   $measureText .= " / " . $measure['measureName'] . " " . $measure['measureValue'];
               }
-          }  
+          }
+          $get_productQuantity = $product->getproductbyId($result['productId']);
+          while($get_productQuantity_result =$get_productQuantity->fetch_assoc()){
+            $productQuantity_text = $get_productQuantity_result['productQuantity'];
+          }
+
     ?>
       <!-- form để tăng giảm số lượng sản phẩm -->
       <!-- ============================================================================== -->
@@ -97,12 +108,20 @@
         <!-- Phần nút xóa và tăng giảm -->
           <!-- ============================================================================== -->
               <div class="cart-button">
+                <?php
+                  if(isset($trigger_outsale) && $trigger_outsale == true){
+                    echo "<div class='div-span-error'><span class='error'>Số lượng vừa thêm không khả dụng</span></div>";
+                  }
+                ?>
                 <!-- ========================== -->
                 <!-- Nút xóa -->
                 <button class="reset-this-item">
                   <a href="?cartid=<?php echo $result['cartId'] ?>">Xóa</a>
                 </button>
-
+                <?php
+                  $total = 0;
+                  if( $productQuantity_text > 0){
+                ?>
                 <!-- ========================== -->
                 <!-- Nút giảm -->
                 <button class="minus-item" name="minus" value="minus">
@@ -127,11 +146,26 @@
                   step="1"
                 />
 
+                <input
+                  hidden
+                  type="number"
+                  name="productQuantity"
+                  value="<?php echo $productQuantity_text; ?>"
+                />
+                  
                 <!-- ========================== -->
                 <!-- Nút thêm -->
                 <button class="add-item" name="add" value="add">
                   <img src="img/plus.png" alt="+" />
                 </button>
+                <?php
+                  $qty = $qty + $result['quantity'];
+                  $total = $result['productPrice'] * $result['quantity'];
+                } else{
+                  $trigger_het_hang_luc_mua = true;
+                  echo "<span class='error'>Sản phẩm hiện đã hết</span>";
+                }
+                ?>
               </div>
             </div>
           </form>
@@ -139,8 +173,6 @@
       <!-- ============================================================================== -->
     <?php
         // Tính tổng tiền = giá mỗi món nhân số lượng
-        $qty = $qty + $result['quantity'];
-        $total = $result['productPrice'] * $result['quantity'];
         $subtotal = $subtotal + $total;
         }
       }

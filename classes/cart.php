@@ -145,6 +145,76 @@
         // =========================================================
         //              Đổ sản phẩm từ cart vào order
         // =========================================================
+        // public function insertOrder($customer_id, $data) {
+        //     $customerId = Session::get('customer_id');
+        //     $receiverName = mysqli_real_escape_string($this->db->link, $data['receiverName']);
+        //     $receiverPhone = mysqli_real_escape_string($this->db->link, $data['receiverPhone']);
+        //     $shippingAddress = mysqli_real_escape_string($this->db->link, $data['shippingAddress']);
+        //     $paymentMethod = isset($data['method']) ? mysqli_real_escape_string($this->db->link, $data['method']) : null;
+        //     $notes = mysqli_real_escape_string($this->db->link, $data['notes']); // Thêm ghi chú
+        
+        //     // Kiểm tra các trường không được để trống
+        //     if (empty($receiverName) || empty($receiverPhone) || empty($shippingAddress) || empty($paymentMethod)) {
+        //         return "<span class='error'>Không được để trống thông tin bắt buộc</span>";
+        //     }
+        
+        //     $orderDate = date('Y-m-d H:i:s');
+        //     $paymentStatus = 'pending';
+        //     $status = 'pending';
+        
+        //     // Lấy danh sách sản phẩm từ giỏ hàng
+        //     $query = "SELECT * FROM tbl_cart WHERE customerId = '$customerId'";
+        //     $get_products = $this->db->select($query);
+        
+        //     if ($get_products) {
+        //         // Tính tổng số tiền
+        //         $totalAmount = 0;
+        //         while ($product = $get_products->fetch_assoc()) {
+        //             $totalAmount += $product['quantity'] * $product['productPrice'];
+        //         }
+        
+        //         // Chèn dữ liệu vào bảng tbl_order
+        //         $query_order = "INSERT INTO tbl_order (
+        //             customerId, orderDate, shippingAddress, paymentMethod, paymentStatus, totalAmount, status, notes, receiverName, receiverPhone
+        //         ) VALUES (
+        //             '$customer_id', '$orderDate', '$shippingAddress', '$paymentMethod', '$paymentStatus', '$totalAmount', '$status', '$notes', '$receiverName', '$receiverPhone'
+        //         )";
+        
+        //         $insert_order = $this->db->insert($query_order);
+        
+        //         if ($insert_order) {
+        //             // Lấy ID của đơn hàng vừa tạo
+        //             $orderId = $this->db->link->insert_id;
+        
+        //             // Thêm sản phẩm vào bảng tbl_order_details
+        //             $get_products->data_seek(0); // Reset con trỏ kết quả để duyệt lại
+        //             while ($product = $get_products->fetch_assoc()) {
+        //                 $productId = $product['productId'];
+        //                 $quantity = $product['quantity'];
+        //                 $unitPrice = $product['productPrice'];
+        //                 $totalPrice = $quantity * $unitPrice;
+        
+        //                 $query_order_details = "INSERT INTO tbl_order_details (
+        //                     orderId, productId, quantity, unitPrice, totalPrice
+        //                 ) VALUES (
+        //                     '$orderId', '$productId', '$quantity', '$unitPrice', '$totalPrice'
+        //                 )";
+        
+        //                 $this->db->insert($query_order_details);
+        //             }
+        
+        //             // Xóa giỏ hàng sau khi đặt hàng thành công
+        //             $this->db->delete("DELETE FROM tbl_cart WHERE customerId = '$customerId'");
+        
+        //             return "<span class='success'>Đơn hàng đã được tạo thành công!</span>";
+        //         } else {
+        //             return "<span class='error'>Lỗi khi tạo đơn hàng. Vui lòng thử lại!</span>";
+        //         }
+        //     } else {
+        //         return "<span class='error'>Giỏ hàng trống. Không thể tạo đơn hàng!</span>";
+        //     }
+        // }
+        
         public function insertOrder($customer_id, $data) {
             $customerId = Session::get('customer_id');
             $receiverName = mysqli_real_escape_string($this->db->link, $data['receiverName']);
@@ -169,8 +239,26 @@
             if ($get_products) {
                 // Tính tổng số tiền
                 $totalAmount = 0;
+        
+                // Kiểm tra số lượng sản phẩm trong kho
                 while ($product = $get_products->fetch_assoc()) {
-                    $totalAmount += $product['quantity'] * $product['productPrice'];
+                    $productId = $product['productId'];
+                    $quantity = $product['quantity'];
+        
+                    $query_check_stock = "SELECT productQuantity FROM tbl_product WHERE productId = '$productId'";
+                    $result_check_stock = $this->db->select($query_check_stock);
+        
+                    if ($result_check_stock) {
+                        $stock = $result_check_stock->fetch_assoc()['productQuantity'];
+        
+                        if ($quantity > $stock) {
+                            return "<span class='error'>Lỗi khi tạo đơn hàng. Có thể sản phẩm bạn mua đã hết hàng</span>";
+                        }
+                    } else {
+                        return "<span class='error'>Lỗi khi kiểm tra số lượng sản phẩm trong kho</span>";
+                    }
+        
+                    $totalAmount += $quantity * $product['productPrice'];
                 }
         
                 // Chèn dữ liệu vào bảng tbl_order
@@ -186,7 +274,7 @@
                     // Lấy ID của đơn hàng vừa tạo
                     $orderId = $this->db->link->insert_id;
         
-                    // Thêm sản phẩm vào bảng tbl_order_details
+                    // Thêm sản phẩm vào bảng tbl_order_details và giảm số lượng sản phẩm
                     $get_products->data_seek(0); // Reset con trỏ kết quả để duyệt lại
                     while ($product = $get_products->fetch_assoc()) {
                         $productId = $product['productId'];
@@ -201,6 +289,10 @@
                         )";
         
                         $this->db->insert($query_order_details);
+        
+                        // Giảm số lượng sản phẩm trong kho
+                        $query_update_stock = "UPDATE tbl_product SET productQuantity = productQuantity - $quantity WHERE productId = '$productId'";
+                        $this->db->update($query_update_stock);
                     }
         
                     // Xóa giỏ hàng sau khi đặt hàng thành công

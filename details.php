@@ -70,6 +70,9 @@
                     <p class="product-price"><?php echo number_format($result_details['productPrice'], 0, ',', '.'); ?>đ</p>
                     <!-- Form số lượng sản phẩm và 2 nút Add to cart và Buy now -->
                     <!-- ==================================== -->
+                    <?php
+                        if(!$result_details['productQuantity'] == 0){
+                    ?>
                     <form id="addToCartForm" method="post">
                         <label for="quantity-input" class="form-label">Chọn số lượng:</label>
                         <div class="quantity-container">
@@ -81,10 +84,16 @@
                         <input type="text" id="proid" value="<?php echo $id; ?>" hidden />
                         <div id="cartMessage"></div>
                         <div class="btn-sales">
+                            <input name="productQuantity" type="number" id="productQuantity" value="<?php echo $result_details['productQuantity']; ?>" hidden />
                             <button type="button" id="addToCartButton" class="add-to-cart" data-action="add">Thêm vào giỏ hàng</button>
                             <button type="button" id="buyNowButton" class="buy-now" data-action="buy">Mua ngay</button>
                         </div>
                     </form>
+                    <?php
+                     } else{
+                        echo "<span class='error'>HẾT HÀNG</span>";
+                     }
+                    ?>
                     <!-- ==================================== -->
                 </div>
             </div>

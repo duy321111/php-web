@@ -261,3 +261,15 @@ input[type="number"] {
 }
 
 /* ============= */
+.div-span-error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.error {
+  font-size: 12px;
+  margin: 0px;
+  padding: 0px;
+}
