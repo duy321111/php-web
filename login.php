@@ -149,12 +149,12 @@
         <div class="overlay-container" id="overlayCon">
           <div class="overlay">
             <div class="overlay-panel overlay-left">
-              <a href="index.php" style="margin:0.25rem;" class="taga-logo"><img src="/img/loginlogo.png" alt="Logo"><h1>Trang chủ</h1></a>
+              <a href="index.php" style="margin:0.25rem;" class="taga-logo"><img src="img/loginlogo.png" alt="Logo"><h1>Trang chủ</h1></a>
               <p>Đăng nhập để luôn giữ kết nối với của hàng bạn nhé!</p>
               <button>Đăng nhập</button>
             </div>
             <div class="overlay-panel overlay-right">
-              <a href="index.php" style="margin:0.25rem" class="taga-logo"><img src="/img/loginlogo.png" alt="Logo"><h1>Trang chủ</h1></a>
+              <a href="index.php" style="margin:0.25rem" class="taga-logo"><img src="img/loginlogo.png" alt="Logo"><h1>Trang chủ</h1></a>
               <p>Chào mừng đến với cửa hàng phụ kiện máy tính số 1 Việt Nam</p>
               <button>Đăng kí</button>
             </div>
