@@ -62,9 +62,10 @@
                         </td>
                         <td>
                             <?php if($result_slider['sliderType'] == 1) { ?>
-                                <a href="?type_slider=<?php echo $result_slider['sliderId']; ?>&type=0">Off</a>
+                                <a href="?type_slider=<?php echo $result_slider['sliderId']; ?>&type=0">On</a>
+                                
                             <?php } else { ?>
-                                <a href="?type_slider=<?php echo $result_slider['sliderId']; ?>&type=1">On</a>
+                                <a href="?type_slider=<?php echo $result_slider['sliderId']; ?>&type=1">Off</a>
                             <?php } ?>
                         </td>
                         <td>

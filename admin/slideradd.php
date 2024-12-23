@@ -67,7 +67,7 @@
             <td class="form-input-cell">
               <select name="type" id="" class="select-add-banner">
                 <option value="1">On</option>
-                <option value="2">Off</option>
+                <option value="0">Off</option>
               </select>
             </td>
           </tr>

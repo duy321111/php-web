@@ -6,9 +6,9 @@
 }
 
 :root {
-  --linear-grad: linear-gradient(to right, #141e30, #243b55);
-  --grad-clr1: #141e30;
-  --grad-clr2: #243b55;
+  --linear-grad: linear-gradient(to right, #ee4d2d, #ee4d2d);
+  --grad-clr1: #f3826c;
+  --grad-clr2: #f3826c;
 }
 
 body {
@@ -81,7 +81,11 @@ span {
   margin: 8px 0px;
   width: 100%;
 }
-
+input:-webkit-autofill {
+  background-color: #f3f3f3 !important;
+  -webkit-box-shadow: 0 0 0px 1000px #f3f3f3 inset !important;
+  box-shadow: 0 0 0px 1000px #f3f3f3 inset !important;
+}
 input {
   width: 100%;
   padding: 12px 15px;

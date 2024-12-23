@@ -149,12 +149,12 @@
         <div class="overlay-container" id="overlayCon">
           <div class="overlay">
             <div class="overlay-panel overlay-left">
-              <h1>Chào mừng!</h1>
+              <a href="index.php" style="margin:0.25rem"><h1>Trang chủ</h1></a>
               <p>Đăng nhập để luôn giữ kết nối với của hàng bạn nhé!</p>
               <button>Đăng nhập</button>
             </div>
             <div class="overlay-panel overlay-right">
-              <h1>Chào bạn!</h1>
+              <a href="index.php" style="margin:0.25rem"><h1>Trang chủ</h1></a>
               <p>Chào mừng đến với cửa hàng phụ kiện máy tính số 1 Việt Nam</p>
               <button>Đăng kí</button>
             </div>

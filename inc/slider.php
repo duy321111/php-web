@@ -16,7 +16,7 @@ $product = new Product($conn);
                 $get_slider = $product->show_slider();
                 if ($get_slider) {
                     while ($result_slider = $get_slider->fetch_assoc()) {
-                        if($result_slider['sliderType'] == 0){
+                        if($result_slider['sliderType'] == 1){
                 ?>
                 <img src="admin/upload/<?php echo htmlspecialchars($result_slider['sliderImage']); ?>" alt="banner1">
                 <?php
