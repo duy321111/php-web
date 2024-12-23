@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Gửi AJAX request
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "../ajax/ajax_add_to_cart.php", true);
+    xhr.open("POST", "ajax/ajax_add_to_cart.php", true);
     xhr.onload = function () {
       if (xhr.status === 200) {
         const response = JSON.parse(xhr.responseText); // Phản hồi JSON từ server
