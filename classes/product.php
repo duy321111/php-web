@@ -496,5 +496,25 @@
         }
         // Kết thúc phần slider
         //=====================================================================
+        
+        // ================================================
+        //          Hàm tìm kiếm sản phẩm theo tên
+        // ================================================
+        public function search_products($search_name){
+            $search_name = "%" . $search_name . "%";
+            $query = "SELECT DISTINCT tbl_product.productId, tbl_product.productName, tbl_product.catId, 
+                                            tbl_product.brandId, tbl_product.productPrice, tbl_product.image, tbl_product.type   
+                            FROM tbl_product 
+                            JOIN tbl_category ON tbl_product.catID = tbl_category.catID
+                            JOIN tbl_brand ON tbl_product.brandID = tbl_brand.brandID
+                            JOIN tbl_measure ON tbl_product.productID = tbl_measure.productID
+                            WHERE tbl_product.productName LIKE '$search_name' 
+                            OR tbl_category.catName LIKE '$search_name' 
+                            OR tbl_brand.brandName LIKE '$search_name' 
+                            OR tbl_measure.measureName LIKE '$search_name'";
+            $result = $this->db->select($query);
+            return $result;
+        }
+
     }
  ?>

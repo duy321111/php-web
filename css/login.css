@@ -7,13 +7,13 @@
 
 :root {
   --linear-grad: linear-gradient(to right, #ee4d2d, #ee4d2d);
-  --grad-clr1: #f3826c;
-  --grad-clr2: #f3826c;
+  --grad-clr1: #ffc421;
+  --grad-clr2: #ffc421;
 }
 
 body {
   height: 100vh;
-  background: #f6f5f7;
+  background: #ffff;
   display: grid;
   place-content: center;
   font-family: "Oswald";
@@ -23,7 +23,7 @@ body {
   position: relative;
   width: 850px;
   height: 500px;
-  background-color: #fff;
+  background-color: #ffffff;
   box-shadow: 25px 30px 55px #5577;
   border-radius: 13px;
   overflow: hidden;

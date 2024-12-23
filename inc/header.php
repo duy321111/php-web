@@ -64,7 +64,8 @@
       </a>
       <!--  -->
       <!-- Thanh search test (LINH làm để test) -->
-      <form action="index.php?act=" method = "post">
+      <!-- <form action="index.php?act=" method = "post"> -->
+      <form action="search.php" method = "GET">
           <div class="search-container">
             <input class = "nav-search" name = "search-bar" type="text" id="search-input" placeholder="Tìm kiếm sản phẩm..." onkeyup="suggestProducts(this.value)">
             <div id="suggestions"></div>
