@@ -273,3 +273,10 @@ input[type="number"] {
   margin: 0px;
   padding: 0px;
 }
+
+.thanhtoanbtn.disabled {
+  background-color: #ccc;
+  color: #ff6600;
+  cursor: not-allowed;
+  pointer-events: none; /* Ngăn nhấn nút */
+}

@@ -13,10 +13,12 @@
   // =============================================================================
   //     Khi nhấn button add-item và minus-item sẽ nộp form thay đổi số lượng
   // =============================================================================
+  $trigger_outsale = false;
   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cartId']) && isset($_POST['quantity'])) {
     $cartId = $_POST['cartId'];  // Lấy cartId từ POST
     $quantity = $_POST['quantity'];  // Lấy quantity từ POST
     $productQuantity = $_POST['productQuantity'];
+    $trigger_outsale = false;
     if($quantity > $productQuantity){
       $trigger_outsale = true;
     }
@@ -70,6 +72,7 @@
       $get_product_cart = $ct->get_product_cart();
       if($get_product_cart){
         $subtotal = 0;
+        $total = 0;
         while($result =$get_product_cart->fetch_assoc()){
           // Lấy thông số kỹ thuật của sản phẩm và gắn vào tên để hiện thị đẹp hơn
           $measures = $product->get_measures_by_product($result['productId']);
@@ -119,7 +122,6 @@
                   <a href="?cartid=<?php echo $result['cartId'] ?>">Xóa</a>
                 </button>
                 <?php
-                  $total = 0;
                   if( $productQuantity_text > 0){
                 ?>
                 <!-- ========================== -->
@@ -209,10 +211,18 @@
         <div class="wrapper-cart-items-method">
           <div class="grandtotal">
             <p>Tổng:</p>
-            <p id="grandtotal"><?php echo number_format($grandtotal, 0, ',', '.'); ?>đ</p> <!-- ID để JavaScript có thể cập nhật -->
+            <p id="grandtotal"><?php echo number_format($grandtotal, 0, ',', '.'); ?>đ</p>
           </div>
           <div class="div-thanhtoan">
-            <a class="thanhtoanbtn" href="payment.php">
+            <?php 
+              // Kiểm tra trigger
+              $disableButton = isset($trigger_outsale) && $trigger_outsale === true || isset($trigger_het_hang_luc_mua) && $trigger_het_hang_luc_mua === true;
+            ?>
+            <a 
+              class="thanhtoanbtn <?php echo $disableButton ? 'disabled' : ''; ?>" 
+              href="<?php echo !$disableButton ? 'payment.php' : '#'; ?>"
+              style="<?php echo $disableButton ? 'background-color: #ccc; color: #ff6600; cursor: not-allowed;' : ''; ?>"
+            >
               Đặt mua
             </a>
           </div>
