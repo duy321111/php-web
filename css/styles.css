@@ -116,6 +116,7 @@ nav {
   left: 0rem;
   width: 13rem;
   border-radius: 0 0 0.5rem 0.5rem;
+  z-index: 10;
 }
 
 .category-hover:hover .category-child-laptop {
@@ -147,6 +148,7 @@ nav {
   left: 0rem;
   width: 30rem;
   border-radius: 0 0 0.5rem 0.5rem;
+  z-index: 10;
 }
 
 .category-hover:hover .category-child-maincpu {
@@ -178,6 +180,7 @@ nav {
   left: 0rem;
   width: 15rem;
   border-radius: 0 0 0.5rem 0.5rem;
+  z-index: 10;
 }
 
 .category-hover:hover .category-child-thenho {
@@ -209,6 +212,7 @@ nav {
   left: 0rem;
   width: 15rem;
   border-radius: 0 0 0.5rem 0.5rem;
+  z-index: 10;
 }
 
 .category-hover:hover .category-child-manhinh {
@@ -240,6 +244,7 @@ nav {
   left: 0rem;
   width: 5rem;
   border-radius: 0 0 0.5rem 0.5rem;
+  z-index: 10;
 }
 
 .category-hover:hover .category-child-chuot {
@@ -271,6 +276,7 @@ nav {
   left: 0rem;
   width: 5rem;
   border-radius: 0 0 0.5rem 0.5rem;
+  z-index: 10;
 }
 
 .category-hover:hover .category-child-banphim {

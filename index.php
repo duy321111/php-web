@@ -3,6 +3,7 @@
     // Một cái banner nữa ở đây, banner này admin đổi ảnh được
     include 'inc/slider.php';
 ?>
+<script src="js/ajax_buynow_index.js"></script>
 <div class="wrapper">
     <!-- ============================================================================== -->
     <!--                         List card sản phẩm hot                                 -->
@@ -36,7 +37,10 @@
                         </a>
                         <span class="card-price"><?php echo number_format($result['productPrice'], 0, ',', '.') ?>đ</span>
                     </div>
-                    <button class="btnMua" onclick="addToCart(this)">Mua ngay</button>
+                    <form id="addToCartForm" method="post">
+                        <input type="text" id="proid" value="<?php echo $result['productId']; ?>" hidden />
+                        <button class="btnMua buy-now" id="buyNowButton" data-action="buy">Mua ngay</button>
+                    </form>
                 </div>
             <?php
                     }
@@ -90,7 +94,10 @@
                     </a>
                     <span class="card-price"><?php echo number_format($result_new['productPrice'], 0, ',', '.'); ?>đ</span>
                 </div>
-                <button class="btnMua" onclick="addToCart(this)">Mua ngay</button>
+                <form id="addToCartForm" method="post">
+                    <input type="text" id="proid" value="<?php echo $result_new['productId']; ?>" hidden />
+                    <button class="btnMua buy-now" id="buyNowButton" data-action="buy">Mua ngay</button>
+                </form>
             </div>
         <?php
                 }
