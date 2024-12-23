@@ -1,7 +1,7 @@
 <?php
     include 'inc/header.php';
 ?>
-
+<script src="js/ajax_buynow_index.js"></script>
 <!-- Trang này thực hiện việc lấy sản phẩm theo category hoặc brand -->
 <?php 
     // Xử lý Get khi nhận được từ trang details.php gửi qua
@@ -77,7 +77,10 @@
                         </a>
                         <span class="card-price"><?php echo number_format($result['productPrice'], 0, ',', '.') ?>đ</span>
                     </div>
-                    <button class="btnMua" onclick="addToCart(this)">Mua ngay</button>
+                    <form id="addToCartForm" method="post">
+                        <input type="text" id="proid" value="<?php echo $result['productId']; ?>" hidden />
+                        <button class="btnMua buy-now" id="buyNowButton" data-action="buy">Mua ngay</button>
+                    </form>
                 </div>
             <?php
                     }
