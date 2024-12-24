@@ -104,7 +104,7 @@
             $status = $ord->check_cancel($id);
             // Kiểm tra giá trị status và xử lý hiển thị form
             if ($status !== 'completed'){
-                if ($status === 'cancelled') {
+                if ($status === 'cancel') {
                     // Nếu đơn hàng đã bị hủy, hiển thị thông báo hủy đơn
                     echo "
                         <div class='btn-cancel-wrp'>
