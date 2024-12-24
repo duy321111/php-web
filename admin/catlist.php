@@ -2,6 +2,7 @@
   include 'inc/header.php'; 
   include '../classes/category.php'
 ?>
+<script src="js/catlist.js"></script>
 <?php 
   $cat = new category();
   if (isset($_GET['delid'])) {
@@ -20,6 +21,9 @@
           echo $delCat;
         }
       ?>
+    </div>
+    <div class="search-wrapper">
+      <input type="text" id="search-input" placeholder="Tìm kiếm danh mục..." onkeyup="filterCategoryTable()" />
     </div>
     <div class="table-wrapper">
       <table class="category-table" id="category-table">

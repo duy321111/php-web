@@ -5,7 +5,7 @@
   include '../classes/product.php';
   include_once '../helpers/format.php';
 ?>
-
+<script src="js/productlist.js"></script>
 <?php 
   $pd = new product();
   $fm = new Format();
@@ -25,8 +25,15 @@
             }
           ?>
           </div>
+          <div class="search-wrapper">
+            <input type="text" id="search-input" placeholder="Tìm kiếm sản phẩm..." onkeyup="filterProductTable()" />
+          </div>
+          <div class="filter-slider">
+            <label for="quantity-range">Lọc sản phẩm theo Tồn kho: <span id="slider-value">0</span></label>
+            <input type="range" id="quantity-range" min="0" max="200" value="0" step="1" oninput="filterByQuantity()" />
+          </div>
             <div class="table-container">
-                <table class="product-table">
+                <table class="product-table" id="product-table">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -48,7 +55,7 @@
                           while($result = $pdlist->fetch_assoc()){
                             $i++;
                       ?>
-                        <tr class="product-row">
+                        <tr class="product-row" data-quantity="<?php echo $result['productQuantity']; ?>">
                             <td><?php echo $i ?></td>
                             <td><?php echo $result['productName'] ?></td>
                             <td><?php echo number_format($result['productPrice'], 0, ',', '.') ?>đ</td>
@@ -95,6 +102,29 @@
         </div>
     </div>
       
+    <script>
+      function filterByQuantity() {
+        // Lấy giá trị của thanh kéo
+        var rangeValue = document.getElementById('quantity-range').value;
+        document.getElementById('slider-value').textContent = rangeValue;
+
+        // Lọc các sản phẩm dựa trên Tồn kho
+        var rows = document.querySelectorAll('.product-row');
+        rows.forEach(function(row) {
+          var quantity = parseInt(row.getAttribute('data-quantity'), 10);
+
+          // Hiển thị sản phẩm nếu Tồn kho >= giá trị của thanh kéo
+          if (quantity >= rangeValue) {
+            row.style.display = '';
+          } else {
+            row.style.display = 'none';
+          }
+        });
+      }
+    </script>
+
+
+
 
 <?php 
   include 'inc/footer.php'; 

@@ -25,6 +25,14 @@
           <p>Thống kê số lượng khách hàng của mỗi tỉnh:</p>
           <div id="customerChart" style="height: 250px;"></div>
         </div>
+        <div class="chart">
+          <p>Thống kê số lượng sản phẩm bán ra:</p>
+          <div id="productChart" style="height: 250px;"></div>
+        </div>
+        <div class="chart">
+          <p>Thống kê tổng số tiền theo tháng:</p>
+          <div id="monthlyChart" style="height: 250px;"></div>
+        </div>
       </div>
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
@@ -32,17 +40,10 @@
   <!-- Biểu đồ thống kê đơn hàng dạng đường (line chart) -->
   <script>
     new Morris.Line({
-      // ID of the element in which to draw the chart.
       element: 'linechart',
-      // Chart data records -- each entry in this array corresponds to a point on
-      // the chart.
       data: chartData1,
-      // The name of the data record attribute that contains x-values.
       xkey: 'year',
-      // A list of names of data record attributes that contain y-values.
       ykeys: ['value'],
-      // Labels for the ykeys -- will be displayed when you hover over the
-      // chart.
       labels: ['Value']
     });
   </script>
@@ -50,12 +51,31 @@
   <!-- Biểu đồ thống kê số lượng khách hàng theo tỉnh (donut chart biểu đồ tròn) -->
  <script>
     new Morris.Donut({
-      // ID of the element in which to draw the chart.
       element: 'customerChart',
-      // Chart data records -- each entry in this array corresponds to a point on
-      // the chart.
       data: chartData2,
       formatter: function (x) { return x + " khách hàng"}
+    });
+  </script>
+
+  <!-- Biểu đồ thống kê số lượng sản phẩm bán ra (bar chart) -->
+  <script>
+    new Morris.Bar({
+      element: 'productChart',
+      data: chartData3,
+      xkey: 'label',
+      ykeys: ['value'],
+      labels: ['Quantity']
+    });
+  </script>
+
+  <!-- Biểu đồ thống kê tổng số tiền theo tháng (line chart) -->
+  <script>
+    new Morris.Line({
+      element: 'monthlyChart',
+      data: chartData4,
+      xkey: 'month',
+      ykeys: ['value'],
+      labels: ['Total Amount']
     });
   </script>
 <?php 

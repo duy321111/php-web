@@ -2,6 +2,7 @@
   include 'inc/header.php'; 
   include '../classes/brand.php'
 ?>
+<script src="js/brandlist.js"></script>
 <?php 
   $brand = new brand();
   if (isset($_GET['delid'])) {
@@ -20,6 +21,9 @@
         echo $delBrand;
       }
     ?>
+    </div>
+    <div class="search-wrapper">
+      <input type="text" id="search-input" placeholder="Tìm kiếm thương hiệu..." onkeyup="filterBrandTable()" />
     </div>
     <div class="table-wrapper">
       <table class="brand-table" id="brand-table">

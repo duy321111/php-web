@@ -229,7 +229,7 @@
             }
         
             $orderDate = date('Y-m-d H:i:s');
-            $paymentStatus = 'pending';
+            $paymentStatus = ($paymentMethod === 'online') ? 'completed' : 'pending';
             $status = 'pending';
         
             // Lấy danh sách sản phẩm từ giỏ hàng

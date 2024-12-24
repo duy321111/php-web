@@ -24,6 +24,13 @@
             return $result;
         }
 
+        public function show_order_cusId($id) {
+            $query = "SELECT * FROM tbl_order WHERE customerId = '$id' ORDER BY orderId DESC";
+            $result =$this->db->select($query);
+            return $result;
+        }
+        
+
         // =========================================================
         //                  Hiện chi tiết list
         // =========================================================

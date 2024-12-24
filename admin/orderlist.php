@@ -7,12 +7,20 @@
   $customer = new customer();
   $order = new order();
 ?>
-
+<script src="js/orderlist.js"></script>
 <script src="js/ajax_order.js"></script>
 <link rel="stylesheet" href="css/order.css">
 <h1 class="dashboard-title">Đơn hàng</h1>
 <div class="customer-list-wrapper">
   <div class="customer-box">
+    <select id="status-filter" onchange="filterTable()">
+      <option value="">Tất cả trạng thái</option>
+      <option value="pending">Đang xử lý</option>
+      <option value="shipping">Đang giao</option>
+      <option value="completed">Hoàn tất</option>
+      <option value="cancel">Hủy</option>
+    </select>
+    <input type="text" id="search-box" placeholder="Tìm kiếm..." oninput="filterTable()">
     <div class="table-wrapper">
       <table class="customer-table" id="customer-table">
         <thead>

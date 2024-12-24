@@ -85,3 +85,44 @@ body {
     min-width: 1200px;
   }
 }
+
+#search-input {
+  width: 100%;
+  max-width: 200px;
+  padding: 5px 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+#search-input:focus {
+  border-color: #007bff; /* Màu xanh khi chọn */
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.6); /* Hiệu ứng đổ bóng khi focus */
+}
+
+#search-input::placeholder {
+  color: #aaa; /* Màu chữ placeholder */
+  font-style: italic;
+}
+
+#search-input:hover {
+  border-color: #888; /* Màu đường viền khi hover */
+}
+
+.filter-slider {
+  margin-bottom: 20px;
+}
+
+#quantity-range {
+  width: 200px;
+  margin: 10px 0;
+}
+
+#slider-value {
+  font-weight: bold;
+  color: #333;
+}

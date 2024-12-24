@@ -2,6 +2,8 @@
   include 'inc/header.php'; 
   include '../classes/customer.php'
 ?>
+
+<script src="js/customerlist.js"></script>
 <?php 
   $customer = new customer();
   if (isset($_GET['delid'])) {
@@ -20,6 +22,9 @@
           echo $delCustomer;
         }
       ?>
+    </div>
+    <div class="search-wrapper">
+      <input type="text" id="search-input" placeholder="Tìm kiếm khách hàng..." onkeyup="filterTable()" />
     </div>
     <div class="table-wrapper">
       <table class="customer-table" id="customer-table">
@@ -61,9 +66,7 @@
       </table>
     </div>
   </div>
-</div>
-
-      
+</div>    
 
 <?php 
   include 'inc/footer.php'; 

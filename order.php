@@ -12,6 +12,10 @@
 <div class="wrapper">
 
   <div class="custom-table-container">
+      <?php
+        $get_order = $ord->show_order_cusId(Session::get('customer_id'));
+        if($get_order){
+      ?>
       <table class="custom-table">
           <thead>
               <tr>
@@ -27,8 +31,6 @@
           </thead>
           <tbody>
             <?php
-                $get_order = $ord->show_order();
-                if($get_order){
                   $i=0;
                   while($result = $get_order->fetch_assoc()){
                     $i++;
@@ -79,12 +81,19 @@
               </tr>
             <?php
                   }
-                }
             ?>
           </tbody>
       </table>
+      <?php
+        } else {
+      ?>
+      <div class="img-holder">
+        <img src="img/no_order_found.jpg" alt="">
+      </div>
+      <?php
+        }
+      ?>
   </div>
-
 </div>
 
 <?php

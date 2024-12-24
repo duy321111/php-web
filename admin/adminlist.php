@@ -2,6 +2,7 @@
   include 'inc/header.php'; 
   include '../classes/admin.php'
 ?>
+<script src="js/adminlist.js"></script>
 <?php 
   $admin = new admin();
   if (isset($_GET['delid'])) {
@@ -20,6 +21,9 @@
           echo $deladmin;
         }
       ?>
+    </div>
+    <div class="search-wrapper">
+      <input type="text" id="search-input" placeholder="Tìm kiếm nhân viên..." onkeyup="filterAdminTable()" />
     </div>
     <div class="table-wrapper">
       <table class="admin-table" id="admin-table">
