@@ -3,53 +3,19 @@
     // Một cái banner nữa ở đây, banner này admin đổi ảnh được
     include 'inc/slider.php';
 ?>
-<script src="js/ajax_buynow_index.js"></script>
+<script src="js/ajax_load_hot_and_new.js"></script>
 <div class="wrapper">
     <!-- ============================================================================== -->
     <!--                         List card sản phẩm hot                                 -->
     <!-- ============================================================================== -->
     <span class="list_title">Sản phẩm hot</span>
     <div class="listcard-button">
-        <div class="listcard">
-            <?php
-                $product_featured = $product->getproduct_featured();
-                if($product_featured) {
-                    while($result = $product_featured->fetch_assoc()){
-                        $measures = $product->get_measures_by_product($result['productId']);
-                        $measureText = $result['productName']; // Bắt đầu với tên sản phẩm
-                        if ($measures) {
-                            while ($measure = $measures->fetch_assoc()) {
-                                $measureText .= " / " . $measure['measureName'] . " " . $measure['measureValue'];
-                            }
-                        }
-            ?>
-                <!-- card here -->
-                <div class="card">
-                    <div class="card-img">
-                        <!-- Mỗi card đều gửi về cho details productid -->
-                        <a href="details.php?proid=<?php echo $result['productId'] ?>">
-                        <img src="admin/upload/<?php echo $result['image'] ?>" alt="Hình ảnh sản phẩm" />
-                        </a>
-                    </div>
-                    <div class="card-info">
-                        <a href="details.php?proid=<?php echo $result['productId'] ?>">
-                        <span class="card-name"><?php echo $measureText; ?></span>
-                        </a>
-                        <span class="card-price"><?php echo number_format($result['productPrice'], 0, ',', '.') ?>đ</span>
-                    </div>
-                    <form id="addToCartForm" method="post">
-                        <input type="text" id="proid" value="<?php echo $result['productId']; ?>" hidden />
-                        <button class="btnMua buy-now" id="buyNowButton" data-action="buy">Mua ngay</button>
-                    </form>
-                </div>
-            <?php
-                    }
-                }
-            ?>
-            
+        <div class="listcard" id="product-list">
+            <!-- Các sản phẩm sẽ được thêm vào đây -->
         </div>
         <div class="btn-xemthem-wrapper">
-            <button class="btn-xemthem">Xem thêm sản phẩm</button>
+            <!-- Nút "Xem thêm sản phẩm" -->
+            <button class="btn-xemthem" id="load-more">Xem thêm sản phẩm</button>
         </div>
     </div>
 
@@ -66,48 +32,16 @@
     <!-- ============================================================================== -->
     <!--                      List card sản phẩm mới                                    -->
     <!-- ============================================================================== -->
-    <span class="list_title">Sản phẩm mới</span>
+    <div class="list_title">Sản phẩm mới</div>
     <div class="listcard-button">
-        <div class="listcard">
-        <?php
-            $product_new = $product->getproduct_new();
-            if($product_new) {
-                while($result_new = $product_new->fetch_assoc()){
-                    $measures = $product->get_measures_by_product($result_new['productId']);
-                    $measureText = $result_new['productName']; // Bắt đầu với tên sản phẩm
-                    if ($measures) {
-                        while ($measure = $measures->fetch_assoc()) {
-                            $measureText .= " / " . $measure['measureName'] . " " . $measure['measureValue'];
-                        }
-                    }
-        ?>
-            <!-- card here -->
-            <div class="card">
-                <div class="card-img">
-                    <a href="details.php?proid=<?php echo $result_new['productId'] ?>">
-                    <img src="admin/upload/<?php echo $result_new['image'] ?>" alt="Hình ảnh sản phẩm" />
-                    </a>
-                </div>
-                <div class="card-info">
-                    <a href="details.php?proid=<?php echo $result_new['productId'] ?>">
-                    <span class="card-name"><?php echo $measureText; ?></span>
-                    </a>
-                    <span class="card-price"><?php echo number_format($result_new['productPrice'], 0, ',', '.'); ?>đ</span>
-                </div>
-                <form id="addToCartForm" method="post">
-                    <input type="text" id="proid" value="<?php echo $result_new['productId']; ?>" hidden />
-                    <button class="btnMua buy-now" id="buyNowButton" data-action="buy">Mua ngay</button>
-                </form>
-            </div>
-        <?php
-                }
-            }
-        ?>
+        <div id="product-list-new" class="listcard">
+            <!-- Sản phẩm mới sẽ được tải động tại đây -->
         </div>
         <div class="btn-xemthem-wrapper">
-            <button class="btn-xemthem">Xem thêm sản phẩm</button>
+            <button id="load-more-new" class="btn-xemthem">Xem thêm sản phẩm mới</button>
         </div>
     </div>
+
 </div>
 
 <?php

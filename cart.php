@@ -201,7 +201,7 @@
         <p id="vat">10%</p> 
       </div> -->
     <?php 
-      $grandtotal = $subtotal * 110 / 100;
+      $grandtotal = $subtotal;
       Session::set('qty',$qty);
     ?>
       </div>

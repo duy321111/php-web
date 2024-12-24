@@ -286,17 +286,17 @@
         // ================================================
         //    Hiển thị sản phẩm nổi bật trên front end
         // ================================================
-        public function getproduct_featured($limit = 5) {
-            $query = "SELECT * FROM tbl_product WHERE type = '1' LIMIT $limit";
+        public function getproduct_featured($limit = 5, $offset = 0) {
+            $query = "SELECT * FROM tbl_product WHERE type = '1' LIMIT $offset, $limit";
             $result = $this->db->select($query);
             return $result;
         }
-
+        
         // ================================================
         //     Hiển thị sản phẩm mới trên front end
         // ================================================
-        public function getproduct_new($limit = 5) {
-            $query = "SELECT * FROM tbl_product ORDER BY productId DESC LIMIT $limit";
+        public function getproduct_new($limit = 5, $offset = 0) {
+            $query = "SELECT * FROM tbl_product ORDER BY productId DESC LIMIT $offset, $limit";
             $result = $this->db->select($query);
             return $result;
         }
@@ -336,7 +336,7 @@
         // ================================================
         //           Hiển thị sản phẩm theo search
         // ================================================
-        public function get_product_by_search($search_name, $danhmuc){
+        public function get_product_by_search($search_name, $danhmuc, $limit = 20, $offset = 0){
             $search_name = "%" . $search_name . "%";
             $danhmuc = "%" . $danhmuc . "%";
             $query = "SELECT distinct tbl_product.productId, tbl_product.productName, tbl_product.catId, 
@@ -353,12 +353,13 @@
                             OR tbl_brand.brandName LIKE '$search_name' 
                             OR tbl_measure.measureName LIKE '$search_name')
                             AND tbl_category.catName LIKE '$danhmuc')
-                        
+                        LIMIT $offset, $limit
                         ";
             $result = $this->db->select($query);
 
             return $result;
         }
+        
 
         // 
         public function getLatestDellProduct() {
