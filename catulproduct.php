@@ -33,14 +33,6 @@
                 $products = $product->get_product_by_search($search_name, $search_cat);
             
                 if ($products) {
-                    // while ($result = $products->fetch_assoc()) {
-                    //     $measures = $product->get_measures_by_product($result['productId']);
-                    //     $measureText = $result['productName'];
-                    //     if ($measures) {
-                    //         while ($measure = $measures->fetch_assoc()) {
-                    //             $measureText .= " / " . $measure['measureName'] . " " . $measure['measureValue'];
-                    //         }
-                    //     }
             ?>
                 <!-- Xuất các phẩn tử card -->
                 <!-- card here -->
@@ -62,7 +54,6 @@
             <div class="btn-xemthem-wrapper">
                 <input type="text" id="search_name" value="<?php echo $search_name; ?>" hidden />
                 <input type="text" id="search_cat" value="<?php echo $search_cat; ?>" hidden />
-                <input type="text" id="proid" value="<?php echo $result['productId']; ?>" hidden />
                 <button class="btn-xemthem" id="load-more">Xem thêm sản phẩm</button>
             </div>
         <?php

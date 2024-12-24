@@ -1,5 +1,5 @@
 // =============================================================================
-//                      NÚT TĂNG GIẢM SỐ LƯỢNG CART
+//                      NÚT TĂNG GIẢM SỐ LƯỢNG CART.PHP
 // =============================================================================
 document.addEventListener("DOMContentLoaded", function () {
   // Xử lý click sự kiện tăng giảm

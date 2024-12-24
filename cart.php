@@ -239,7 +239,7 @@
       }
     ?>
 
-<script src="js/cart.js"></script>
+<script src="js/cart_num.js"></script>
 <?php
     include 'inc/footer.php';
 ?>

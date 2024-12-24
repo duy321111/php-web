@@ -5,10 +5,9 @@
     $product = new Product();
 
     $search_Name = $_POST['search_Name'] ?? "";
-    $search_Cat = $_POST['search_Cat'] ?? "";
     $limit = isset($_POST['limit']) ? (int)$_POST['limit'] : 20;
     $offset = isset($_POST['offset']) ? (int)$_POST['offset'] : 0;
-    $products = $product->get_product_by_search($search_Name, $search_Cat, $limit, $offset);
+    $products = $product->search_products($search_Name, $limit, $offset);
 
     if ($products) {
         while ($result = $products->fetch_assoc()) {

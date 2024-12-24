@@ -3,7 +3,7 @@
 // =============================================================================
 document.addEventListener("DOMContentLoaded", function () {
   const addToCartButton = document.getElementById("addToCartButton");
-  const buyNowButton = document.getElementById("buyNowButton");
+  const buyNowButton = document.getElementById("buyNowButton_detail");
 
   addToCartButton.addEventListener("click", function () {
     handleCartAction("add");

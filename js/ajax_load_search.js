@@ -7,12 +7,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const loadMoreBtn = document.getElementById("load-more");
   const productList = document.getElementById("product-list");
-  const search_cat = document.getElementById("search_cat");
   const search_name = document.getElementById("search_name");
 
   function loadProducts() {
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "ajax/ajax_fetch_products_catul.php", true);
+    xhr.open("POST", "ajax/ajax_fetch_products_search.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onload = function () {
       if (xhr.status === 200) {
@@ -29,9 +28,9 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     };
 
-    const data = `limit=${limit}&offset=${offset}&search_Cat=${encodeURIComponent(
-      search_cat.value
-    )}&search_Name=${encodeURIComponent(search_name.value)}`;
+    const data = `limit=${limit}&offset=${offset}&search_Name=${encodeURIComponent(
+      search_name.value
+    )}`;
     xhr.send(data);
   }
 

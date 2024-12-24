@@ -334,7 +334,7 @@
 
 
         // ================================================
-        //           Hiển thị sản phẩm theo search
+        //           Hiển thị sản phẩm theo nav
         // ================================================
         public function get_product_by_search($search_name, $danhmuc, $limit = 20, $offset = 0){
             $search_name = "%" . $search_name . "%";
@@ -501,7 +501,7 @@
         // ================================================
         //          Hàm tìm kiếm sản phẩm theo tên
         // ================================================
-        public function search_products($search_name){
+        public function search_products($search_name, $limit = 20, $offset = 0){
             $search_name = "%" . $search_name . "%";
             $query = "SELECT DISTINCT tbl_product.productId, tbl_product.productName, tbl_product.catId, 
                                             tbl_product.brandId, tbl_product.productPrice, tbl_product.image, tbl_product.type   
@@ -512,7 +512,8 @@
                             WHERE tbl_product.productName LIKE '$search_name' 
                             OR tbl_category.catName LIKE '$search_name' 
                             OR tbl_brand.brandName LIKE '$search_name' 
-                            OR tbl_measure.measureName LIKE '$search_name'";
+                            OR tbl_measure.measureName LIKE '$search_name' 
+                    LIMIT $offset, $limit";
             $result = $this->db->select($query);
             return $result;
         }

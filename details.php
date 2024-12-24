@@ -86,7 +86,7 @@
                         <div class="btn-sales">
                             <input name="productQuantity" type="number" id="productQuantity" value="<?php echo $result_details['productQuantity']; ?>" hidden />
                             <button type="button" id="addToCartButton" class="add-to-cart" data-action="add">Thêm vào giỏ hàng</button>
-                            <button type="button" id="buyNowButton" class="buy-now" data-action="buy">Mua ngay</button>
+                            <button type="button" id="buyNowButton_detail" class="buy-now-detail" data-action="buy">Mua ngay</button>
                         </div>
                     </form>
                     <?php
@@ -137,7 +137,7 @@
 </div>
     
     <!-- Script của nút tăng giảm số lượng sản phẩm khi mua -->
-    <script src="js/detail.js"></script>
+    <script src="js/ajax_detail_num.js"></script>
 <?php
     include 'inc/footer.php';
 ?>
