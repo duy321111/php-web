@@ -126,3 +126,7 @@ body {
   font-weight: bold;
   color: #333;
 }
+
+th {
+  cursor: pointer;
+}

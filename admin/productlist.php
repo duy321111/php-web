@@ -34,19 +34,20 @@
           </div>
             <div class="table-container">
                 <table class="product-table" id="product-table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Tên sản phẩm</th>
-                            <th>Giá</th>
-                            <th>Hình ảnh</th>
-                            <th>Danh mục</th>
-                            <th>Thương hiệu</th>
-                            <th>Độ đo</th>
-                            <th>Tồn kho</th>
-                            <th>Tùy chỉnh</th>
-                        </tr>
-                    </thead>
+                <thead>
+                  <tr>
+                    <th onclick="sortTable(0)">ID</th>
+                    <th onclick="sortTable(1)">Tên sản phẩm</th>
+                    <th onclick="sortTable(2)">Giá</th>
+                    <th>Hình ảnh</th>
+                    <th onclick="sortTable(4)">Danh mục</th>
+                    <th onclick="sortTable(5)">Thương hiệu</th>
+                    <th>Độ đo</th>
+                    <th onclick="sortTable(7)">Tồn kho</th>
+                    <th>Tùy chỉnh</th>
+                  </tr>
+                </thead>
+
                     <tbody>
                       <?php
                         $pdlist = $pd->show_product();
@@ -101,30 +102,6 @@
             </div>
         </div>
     </div>
-      
-    <script>
-      function filterByQuantity() {
-        // Lấy giá trị của thanh kéo
-        var rangeValue = document.getElementById('quantity-range').value;
-        document.getElementById('slider-value').textContent = rangeValue;
-
-        // Lọc các sản phẩm dựa trên Tồn kho
-        var rows = document.querySelectorAll('.product-row');
-        rows.forEach(function(row) {
-          var quantity = parseInt(row.getAttribute('data-quantity'), 10);
-
-          // Hiển thị sản phẩm nếu Tồn kho >= giá trị của thanh kéo
-          if (quantity >= rangeValue) {
-            row.style.display = '';
-          } else {
-            row.style.display = 'none';
-          }
-        });
-      }
-    </script>
-
-
-
 
 <?php 
   include 'inc/footer.php'; 

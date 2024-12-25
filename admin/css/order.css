@@ -98,3 +98,8 @@ select {
 #status-filter {
   padding: 7px;
 }
+
+#payment-status-filter {
+  padding: 7px;
+  background-color: #e1e7f0;
+}

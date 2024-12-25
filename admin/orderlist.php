@@ -7,7 +7,6 @@
   $customer = new customer();
   $order = new order();
 ?>
-<script src="js/orderlist.js"></script>
 <script src="js/ajax_order.js"></script>
 <link rel="stylesheet" href="css/order.css">
 <h1 class="dashboard-title">Đơn hàng</h1>
@@ -20,27 +19,31 @@
       <option value="completed">Hoàn tất</option>
       <option value="cancel">Hủy</option>
     </select>
+    <select id="payment-status-filter" onchange="filterTable()">
+      <option value="">Tất cả tình trạng thanh toán</option>
+      <option value="pending">Chưa thanh toán</option>
+      <option value="completed">Đã thanh toán</option>
+    </select>
+
     <input type="text" id="search-box" placeholder="Tìm kiếm..." oninput="filterTable()">
     <div class="table-wrapper">
       <table class="customer-table" id="customer-table">
-        <thead>
-          <tr>
-            <th>Mã đơn</th>
-            <th>Tên người nhận</th>
-            <th>Số điện thoại</th>
-            <th>Email tài khoản đặt hàng</th>
-            <th>Ngày đặt</th>
-            <th>Tình trạng đơn hàng</th>
-            <th>Phương thức thanh toán</th>
-            <th>Tình trạng thanh toán</th>
-            <th>Địa chỉ</th>
-            <th>Ghi chú</th>
-            <th>Tổng đơn</th>
-            <th>Tùy chọn</th>
-            <!-- <th>Ghi chú</th>
-            <th>Tổng đơn</th> -->
-          </tr>
-        </thead>
+      <thead>
+        <tr>
+          <th onclick="sortOrderTable(0)">Mã đơn</th>
+          <th onclick="sortOrderTable(1)">Tên người nhận</th>
+          <th onclick="sortOrderTable(2)">Số điện thoại</th>
+          <th onclick="sortOrderTable(3)">Email tài khoản đặt hàng</th>
+          <th onclick="sortOrderTable(4)">Ngày đặt</th>
+          <th onclick="sortOrderTable(5)">Tình trạng đơn hàng</th>
+          <th onclick="sortOrderTable(6)">Phương thức thanh toán</th>
+          <th onclick="sortOrderTable(7)">Tình trạng thanh toán</th>
+          <th onclick="sortOrderTable(8)">Địa chỉ</th>
+          <th onclick="sortOrderTable(9)">Ghi chú</th>
+          <th onclick="sortOrderTable(10)">Tổng đơn</th>
+          <th>Tùy chọn</th>
+        </tr>
+      </thead>
         <tbody>
           <?php 
             $show_order = $order->show_order();
@@ -93,7 +96,7 @@
 </div>
 
       
-
+<script src="js/orderlist.js"></script>
 <?php 
   include 'inc/footer.php'; 
 ?>
